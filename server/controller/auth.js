@@ -2,7 +2,7 @@ import bcrypt from 'bcrypt';
 import User from '../models/Users.js';
 import Joi from 'joi';
 import JWTService from '../services/jwtService.js'
-
+import UserDTO from '../dto/user.js';
 
 //Minimum eight characters, at least one letter and one number:
 const passwordPattern = '^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$';
@@ -71,7 +71,7 @@ export const register = async (req,res,next)=>{
     })
    
     const savedUser = await newUser.save();
-    const accessToken = JWTService.signAccessToken({id:newUser._id},'120m')
+    const accessToken = JWTService.signAccessToken({_id:newUser._id},'120m')
     
     //send token as cookie   
         res.cookie('accessToken',accessToken,{
@@ -129,16 +129,16 @@ const match = await bcrypt.compare(password,user.password);
             }
 
 //6. now when the password matches, generate the jwt access token for the user.
-const accessToken = JWTService.signAccessToken( {id : user._id},'120m')
+const accessToken = JWTService.signAccessToken( {_id : user._id},'120m')
 
 //7.send the jwt token as a cookie in res
   res.cookie('accessToken',accessToken,{
     maxAge:1000*60*60*24,
     httpOnly:true,
  });
- 
+
 const userDTO = new UserDTO(user);
-return res.status(200).json({user:userDTO,auth:true});
+return res.status(200).json({user:userDTO,auth:true,message:"user successfully logged in"});
     }
     catch(error){
     return next(error);

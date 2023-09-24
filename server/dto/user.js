@@ -2,11 +2,13 @@
 class UserDTO{
     constructor(user){
         this._id= user._id;
-        this.username=user.username;
-        this.name=user.name;
+        this.firstName=user.firstName;
+        this.lastName=user.lastName;
         this.email=user.email;
+        this.occupation=user.occupation;
+        
 
     }
 }
 
-export default UserDTO
+export default UserDTO;

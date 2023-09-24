@@ -11,6 +11,7 @@ import connectionBD from './Database/index.js';
 import bodyParser from 'body-parser';
 import {register} from './controller/auth.js';
 import errorHandler from './middleware/errorHandler.js';
+import authRoutes from './routes/auth.js';
 const app = express();
 
 //Configuration
@@ -24,7 +25,7 @@ app.use(cors());
 app.use("/assets",express.static(path.join(__dirname,'public/assets')));
 // app.use(express.urlencoded({extended:false}));
 
-/* File Storage */
+/* File Storage : it is recommended to read multer documentation regarding uploading pic files */ 
 const storage = multer.diskStorage({
     destination: function(req,file,cb){
         cb(null,"public/assets");  
@@ -38,8 +39,12 @@ const upload = multer({storage:storage});
 //Database connection
 connectionBD();
 
-/* Routes */
+//the particular route where u are uploading a pic file should not exists in route folder (time-> 43:52)
+/* Routes with files*/
 app.post('/auth/register',upload.single('picture'),register)
+
+//Routes
+app.use('/auth',authRoutes);
 
 
 app.use(errorHandler);

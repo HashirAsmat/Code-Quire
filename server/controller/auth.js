@@ -2,7 +2,7 @@ import bcrypt from 'bcrypt';
 import User from '../models/Users.js';
 import Joi from 'joi';
 import JWTService from '../services/jwtService.js'
-import UserDTO from '../dto/user.js';
+
 
 //Minimum eight characters, at least one letter and one number:
 const passwordPattern = '^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$';
@@ -15,7 +15,7 @@ export const register = async (req,res,next)=>{
         //userRegisterSchema
         const userRegisterSchema = Joi.object({
             firstName:Joi.string().min(4).max(30).required(),
-            lastName:Joi.string().min(4).max(30).required(),
+            lastName:Joi.string().min(1).max(30).required(),
             email:Joi.string().email().required(),
             password: Joi.string().pattern(new RegExp(passwordPattern)).required(),
             picturePath:Joi.string(),
@@ -37,11 +37,11 @@ export const register = async (req,res,next)=>{
         lastName,
         email,
         password,
+        viewedProfile,
         picturePath,
         friends,
         location,
         occupation,
-        viewedProfile,
         impressions
     } = req.body;
 

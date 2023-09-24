@@ -11,7 +11,7 @@ const UserSchema = new mongoose.Schema(
        lastName:{
         type:String,
         required:true,
-        min:4,
+        min:1,
         max:30,
        },
        email:{

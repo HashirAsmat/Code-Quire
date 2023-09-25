@@ -12,7 +12,6 @@ import bodyParser from 'body-parser';
 import { register } from './controller/auth.js';
 import errorHandler from './middleware/errorHandler.js';
 import authRoutes from './routes/auth.js';
-import userRoutes from './routes/user.js';
 const app = express();
 
 //Configuration
@@ -46,7 +45,7 @@ app.post('/auth/register', upload.single('picture'), register)
 
 //Routes
 app.use('/auth', authRoutes);
-app.use('/user', userRoutes);
+
 
 app.use(errorHandler);
 app.listen(config.PORT || 6001, () => {

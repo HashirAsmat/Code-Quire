@@ -52,7 +52,5 @@ app.listen(config.PORT || 6001, () => {
     console.log(`listening on port:${config.PORT}`)
 });
 
-
-
 //express.json() is recommended for JSON parsing in modern versions of Express (4.16.0 and later). It provides similar functionality to body-parser.json() but is more integrated into the Express framework
 // for multer concept , see this video -> Uploading Files with NodeJS and Multer (piyush Garg) , Documentation is mostly recommended....

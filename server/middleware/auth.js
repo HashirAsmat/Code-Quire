@@ -6,7 +6,6 @@ const auth = async (req, res, next) => {
     try {
         //1.refresh and access token validation
         const { accessToken } = req.cookies;
-
         if (!accessToken) {
             const error = {
                 status: 401,

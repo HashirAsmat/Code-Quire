@@ -7,7 +7,7 @@ const errorHandler = (error, req, res, next) => {
     let data = {
         message: "internal server Error"
     }
-
+    
     //check if error is validation error
     if (error instanceof ValidationError) {
         status = 401;

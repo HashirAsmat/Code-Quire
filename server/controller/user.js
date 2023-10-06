@@ -35,13 +35,17 @@ export const getUserFriends = async (req, res, next) => {
             return next(error)
         }
         //time -> 1:06:00
-        const friends = Promise.all(user.friends.map(((id) => { return User.findById(id) })));
+        const friendsIds = user.friends;
 
-        const formattedFriends = friends.map(
-            ({ id, firstName, LastName, occupation, location, picturepath }) => {
-                return { id, firstName, LastName, occupation, location, picturepath };
-            });
-        return res.status(200).json(formattedFriends);
+        Promise.all(friendsIds.map(id => User.findById(id)))   //Bug fixed with the help of chatGPT
+        .then(friends => {
+          // Now 'friends' is an array of user objects
+          const formattedFriends = friends.map(({ id, firstName, lastName, occupation, location, picturepath }) => {
+            return { id, firstName, lastName, occupation, location, picturepath };
+          })
+          return res.status(200).json(formattedFriends);
+        });
+       
     }
     catch (error) {
         return next(error)
@@ -52,11 +56,9 @@ export const getUserFriends = async (req, res, next) => {
 //Update - add or remove a particular friend
 export const AddRemoveFriend = async (req, res, next) => {
     try {
-        const { id, friendId } = body.params;
-
+        const { id, friendId } = req.params;
         const user = await User.findById(id);
         const friend = await User.findById(friendId);
-
         if (user.friends.includes(friendId)) {
             user.friends = user.friends.filter((id) => {
                 return id !== friendId
@@ -76,13 +78,15 @@ export const AddRemoveFriend = async (req, res, next) => {
         await user.save();
         await friend.save();
 
-        const friends = Promise.all(user.friends.map(((id) => { return User.findById(id) })));
-
-        const formattedFriends = friends.map(
-            ({ id, firstName, LastName, occupation, location, picturepath }) => {
-                return { id, firstName, LastName, occupation, location, picturepath };
-            });
-        return res.status(200).json(formattedFriends);
+        const friendsIds = user.friends;
+        Promise.all(friendsIds.map(id => User.findById(id)))   
+        .then(friends => {
+          // Now 'friends' is an array of user objects
+          const formattedFriends = friends.map(({ id, firstName, lastName, occupation, location, picturepath }) => {
+            return { id, firstName, lastName, occupation, location, picturepath };
+          })
+          return res.status(200).json(formattedFriends);
+        });
 
     }
     catch (error) {

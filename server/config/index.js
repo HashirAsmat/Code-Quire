@@ -11,3 +11,5 @@ export default {
 }
 
 
+//The code dotenv.config() is used to load environment variables from a .env 
+//file into the Node.js process.env object.

@@ -43,6 +43,7 @@ return next(error)
             const comments = await Comment.find({post:id}).populate('author');
             res.status(200).json({comments});
         }
+        
         catch(error){
             return next(error)
         }

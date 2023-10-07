@@ -63,12 +63,21 @@ app.listen(config.PORT || 6001, () => {
     console.log(`listening on port:${config.PORT}`)
 });
 
+
+
+
+
+//express.json():
+
 //express.json() is recommended for JSON parsing in modern versions of Express (4.16.0 and later). It provides similar functionality to body-parser.json() but is more integrated into the Express framework
 // for multer concept , see this video -> Uploading Files with NodeJS and Multer (piyush Garg) , Documentation is mostly recommended....
 
 
 
 
+
+
+//Morgan:
 
 // Morgan is a popular middleware used for logging HTTP requests in web applications.
 // It provides a way to log various information about incoming HTTP requests,
@@ -77,7 +86,20 @@ app.listen(config.PORT || 6001, () => {
 
 
 
+
+//fileURLToPath:
+
 //Converting platform-specific file paths is important for cross-platform compatibility when working with file paths in a programming context,
 // especially when dealing with file I/O operations or when sharing file paths between different systems
 // const fileURL = 'file:///path/to/your/file.txt';
 // const filePath = fileURLToPath(fileURL);
+
+
+
+
+
+///helmet:
+
+// helmet() is not a built-in JavaScript function, but rather a popular middleware library 
+//used with Node.js and Express.js to enhance the security of web applications by setting various HTTP headers.
+// It helps protect against common web vulnerabilities like Cross-Site Scripting (XSS), Cross-Site Request Forgery (CSRF), and others.

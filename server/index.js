@@ -74,3 +74,10 @@ app.listen(config.PORT || 6001, () => {
 // It provides a way to log various information about incoming HTTP requests,
 // such as the request method, URL, status code, response time, and more. 
 //Developers often use Morgan to gain insights into how their server is handling requests and to troubleshoot issues.
+
+
+
+//Converting platform-specific file paths is important for cross-platform compatibility when working with file paths in a programming context,
+// especially when dealing with file I/O operations or when sharing file paths between different systems
+// const fileURL = 'file:///path/to/your/file.txt';
+// const filePath = fileURLToPath(fileURL);

@@ -65,3 +65,12 @@ app.listen(config.PORT || 6001, () => {
 
 //express.json() is recommended for JSON parsing in modern versions of Express (4.16.0 and later). It provides similar functionality to body-parser.json() but is more integrated into the Express framework
 // for multer concept , see this video -> Uploading Files with NodeJS and Multer (piyush Garg) , Documentation is mostly recommended....
+
+
+
+
+
+// Morgan is a popular middleware used for logging HTTP requests in web applications.
+// It provides a way to log various information about incoming HTTP requests,
+// such as the request method, URL, status code, response time, and more. 
+//Developers often use Morgan to gain insights into how their server is handling requests and to troubleshoot issues.
